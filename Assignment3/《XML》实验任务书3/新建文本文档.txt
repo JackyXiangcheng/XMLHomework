@@ -1,0 +1,14 @@
+let $answer := for $airport in $airportset 
+			let $Num := count($flightset[date=$specialDate][source=$airport or destination=$airport])
+			order by $Num descending
+			let $maxNum := max(Num)
+			return <mostbusyairport>
+				<name>
+					{$airport}
+				</name>
+				<No>
+					{$Num}
+				</No>
+			</mostbusyairport>
+
+ return <result>{$answer[1]}</result>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="info">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="aliasTable">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="row1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="spyREF" type="xs:IDREF"/>
+										<xs:element name="alias" type="xs:string"/>
+									</xs:sequence>
+									<xs:attribute name="aID" type="xs:integer"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="missionTable">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="row2" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="spyREF" type="xs:IDREF"/>
+										<xs:element name="date" type="dateType"/>
+										<xs:element name="description" type="xs:string"/>
+										<xs:element name="status" type="statusType"/>
+									</xs:sequence>
+									<xs:attribute name="mID" type="xs:ID"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="spyTable">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="row3" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="firstName" type="xs:string"/>
+										<xs:element name="lastName" type="xs:string"/>
+									</xs:sequence>
+									<xs:attribute name="spyID" type="xs:ID"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+		<xs:key name="aIDKey">
+			<xs:selector xpath="aliasTable/row1"/>
+			<xs:field xpath="@aID"/>
+		</xs:key>
+		<xs:key name="mIDKey">
+			<xs:selector xpath="missionTable/row2"/>
+			<xs:field xpath="@mID"/>
+		</xs:key>
+		<xs:key name="spyIDKey">
+			<xs:selector xpath="spyTable/row3"/>
+			<xs:field xpath="@spyID"/>
+		</xs:key>
+		<xs:keyref name="aSpyREFKey" refer="spyIDKey">
+			<xs:selector xpath="aliasTable/row1"/>
+			<xs:field xpath="spyREF"/>
+		</xs:keyref>
+		<xs:keyref name="mSpyREFKey" refer="spyIDKey">
+			<xs:selector xpath="missionTable/row2"/>
+			<xs:field xpath="spyREF"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:simpleType name="statusType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Mission Accomplished"/>
+			<xs:enumeration value="In Progress"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="dateType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((1|2)[0-9]{3}/([1-9]|1[0-2])/([1-9]|[1-2][0-9]|3(0|1)))"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

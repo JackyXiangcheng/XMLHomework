@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 被2013 sp1 () 使用XMLSpy v编辑的 (http://www.altova.com) by -->
+<book xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="book.xsd">
+	<title xsi:type="bookTitleType">Data On the Web</title>
+	<author>Jack</author>
+	<author>John</author>
+	<author>Steven</author>
+	<section id="A001" difficulty="simple">
+		<title xsi:type="sectionTitleType">1.xxxx</title>
+		<p>a</p>
+	</section>
+	<section id="A002" difficulty="medium">
+		<title xsi:type="sectionTitleType">1-1.xxxx</title>
+		<p>b</p>
+		<figure width="10" height="12">
+			<title xsi:type="figureTitleType">1-1-1.xxxx</title>
+			<image/>
+		</figure>
+	</section>
+	<section id="A003" difficulty="hard">
+		<title xsi:type="sectionTitleType">1-1.xxxx</title>
+		<figure>
+			<title xsi:type="figureTitleType">1-10.xxxx</title>
+			<image/>
+		</figure>
+		<section id="B001" difficulty="medium">
+			<title xsi:type="sectionTitleType">1-1.xxxx</title>
+			<p>c</p>
+		</section>
+	</section>
+</book>
